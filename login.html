@@ -14,8 +14,21 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <style>
-    html, body{
+    html,
+    body {
       height: 100%;
+    }
+
+    .container {
+      width: 500px;
+    }
+
+    .checkbox {
+      margin: 20px;
+    }
+
+    .sr-only {
+      padding: 20px;
     }
 
     body {
@@ -34,20 +47,85 @@
       padding: 15px;
       margin: auto;
     }
+
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
   </style>
+
+  <script>
+
+    function validar() {
+      var email = document.getElementById("usuario").value;
+
+      var contraseña = document.getElementById("clave").value;
+
+      if (email === "") {
+        alert("Debes ingresar un usuario");
+        return false;
+      }
+
+      else if (contraseña === "") {
+        alert("Debes ingresar una contraseña");
+        return false;
+      }
+
+      else if (contraseña.length < 3) {
+        alert("La contraseña debe tener más de 3 caracteres")
+        return false;
+      }
+
+      else {
+        alert("Usuario creado con exito");
+        window.location.replace("index.html");
+        return false;
+      }
+
+    }
+  </script>
+
 </head>
 
 <body class="text-center">
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 1 (Fecha de entrega: 16/08/2020) -> Punto 3 y 4.</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
-    </div>
-  </div>
 
-  <script src="js/init.js"></script>
-  <script src="js/login.js"></script>
+  <div class="container p-5">
+    <form name="formulario" class="form-signin" onsubmit="return validar()">
+      <img class="mb-4" src="img/login.png" alt="Img login" height="167">
+
+
+      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+      <label for="inputEmail" class="sr-only">Email address</label>
+      <input name="usuario" type="email" id="usuario" class="form-control" placeholder="Email address" required autofocus="">
+
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input name="clave" type="password" id="clave" class="form-control" placeholder="Password" required>
+
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+      </div>
+
+
+
+      <button id="ingresar" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      <p class="mt-5 mb-3 text-muted">© 2017-2019</p>
+    </form>
+
+    <script src="js/init.js"></script>
+    <script src="js/login.js"></script>
 </body>
+
 </html>
