@@ -45,3 +45,7 @@ var getJSONData = function(url){
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
 });
+
+
+var loginUser= sessionStorage.getItem("botonUser");
+document.getElementById("datosUsuario").innerHTML =  loginUser;
