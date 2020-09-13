@@ -49,3 +49,14 @@ document.addEventListener("DOMContentLoaded", function(e){
 
 var loginUser= sessionStorage.getItem("botonUser");
 document.getElementById("datosUsuario").innerHTML =  loginUser;
+
+  
+function cerrarSesion() {
+  var contL = sessionStorage.getItem("VariableContador", contL);
+  contL = 0;
+  sessionStorage.setItem("VariableContador", contL);
+
+  alert("Sesión Cerrada con exito");
+  window.location.href = "login.html";
+}
+
