@@ -1,24 +1,30 @@
 var product = {};
 
-
-
 function showImagesGallery(array) {
 
     let htmlContentToAppend = "";
+    var activar;
 
     for (let i = 0; i < array.length; i++) {
         let imageSrc = array[i];
 
-        htmlContentToAppend += `
-        <div class="col-lg-3 col-md-4 col-6">
-            <div class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail" src="` + imageSrc + `" alt="">
-            </div>
-        </div>
-        `
-        document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
+
+            if (i==0) activar = "active";
+
+            else activar ="";
+
+        htmlContentToAppend += ` <div class="carousel-item" ` +activar+ `>
+
+        
+        <img src="` + imageSrc + `" class="d-block w-100" alt="Carrusel">
+        </div> `
+
+
+       
     }
+    document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
 }
+
 
 function showRelatedImages(array) {
     htmlContentToAppend = "";
@@ -43,9 +49,9 @@ function mostrarEstrellas(nroEstrellasMarcadas) {
     var estrellas = "";
 
     for (let i = 0; i < 5; i++) {
-        if(i < nroEstrellasMarcadas){
+        if (i < nroEstrellasMarcadas) {
             estrellas += `<span class="fa fa-star checked"></span>`;
-        }else{
+        } else {
             estrellas += `<span class="fa fa-star"></span>`;
         }
     }
@@ -59,12 +65,8 @@ function showRelatedComments(array) {
     for (let i = 0; i < array.length; i++) {
         let nroComentario = array[i];
 
+        htmlContentToAppend += ` <p> <strong>` + nroComentario.user + `</strong> - ` + nroComentario.dateTime + ` - ` + mostrarEstrellas(nroComentario.score) + ` <br> ` + nroComentario.description + `  </p>`
 
-
-        
-        htmlContentToAppend +=` <p> <strong>` +  nroComentario.user + `</strong> - ` + nroComentario.dateTime + ` - `+ mostrarEstrellas(nroComentario.score) + ` <br> ` + nroComentario.description  + `  </p>`
-
-        
     }
 
     document.getElementById("comentario").innerHTML = htmlContentToAppend;
@@ -72,19 +74,18 @@ function showRelatedComments(array) {
 }
 
 
-
- function enviarComentario(e){
+function enviarComentario(e) {
     var comentario = {
         score: e.stars.value,
         description: e.message.value,
-        user:sessionStorage.getItem("botonUser"),
+        user: sessionStorage.getItem("botonUser"),
         dateTime: new Date()
     }
 
     nroComentario.push(comentario)
     showRelatedComments(nroComentario);
     return false;
- }
+}
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los

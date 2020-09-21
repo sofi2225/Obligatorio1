@@ -23,26 +23,22 @@
       <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
-      <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
+
 
       <div class="dropdown">
         <button id="datosUsuario" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" onclick="cerrarSesion()" href="#">Cerrar Sesion</a>
-        </div>
-      </div>
 
-      <div class="dropdown">
-        <button id="datosUsuario" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item " href="cart.html">Mi Carrito</a>
+          <a class="dropdown-item " href="my-profile.html">Mi Perfil</a>
           <a class="dropdown-item" onclick="cerrarSesion()" href="#">Cerrar Sesion</a>
+
         </div>
+
+
+
       </div>
 
     </div>
@@ -77,33 +73,58 @@
 
         <dt>Imágenes ilustrativas</dt>
         <dd>
-          <div class="row text-center text-lg-left pt-2" id="productImagesGallery">
+
+
+
+          <div id="carouselExampleControls" class="carousel slide" data-ride="carousel"  >
+            <div class="carousel-inner">
+
+              <div id="productImagesGallery">
+              
+              
+              </div>
+                
+              <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+        
+
+
+
           </div>
-        </dd>
-      </dl>
+
+          
+    </div>
+    </dd>
+    </dl>
 
 
-      <dt>Productos Relacionados</dt>
-      <dd>
-
-        <div></div>
-        <div class="row text-center text-lg-left pt-2" id="relatedImages">
-        </div>
-      </dd>
-      </dl>
-
-
-      <dt>Comentarios</dt>
-      <dd>
-
-        <p id="comentario"></p>
-      </dd>
-      </dl>
-
-      <dt>Nuevo Comentario</dt>
+    <dt>Productos Relacionados</dt>
     <dd>
 
-      <form action="" id="formulariocomentario" onsubmit="return enviarComentario(this)"  >
+      <div></div>
+      <div class="row text-center text-lg-left pt-2" id="relatedImages">
+      </div>
+    </dd>
+    </dl>
+
+
+    <dt>Comentarios</dt>
+    <dd>
+
+      <p id="comentario"></p>
+    </dd>
+    </dl>
+
+    <dt>Nuevo Comentario</dt>
+    <dd>
+
+      <form action="" id="formulariocomentario" onsubmit="return enviarComentario(this)">
         <textarea name="message" rows="10" cols="30" placeholder="Escribe un comentario"></textarea>
         <br>
         <p>Puntuacion</p>
@@ -118,14 +139,14 @@
         <br>
         <br>
 
-        <input type="submit"  />
+        <input type="submit" />
       </form>
       </div>
     </dd>
     </dl>
     </div>
 
-    
+
 
     <a type="button" class="btn btn-light btn-lg btn-block" href="products.html">Ver productos</a>
     </div>
