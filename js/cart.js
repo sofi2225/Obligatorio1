@@ -1,6 +1,27 @@
 var shippingPercentage = 0.15;
 let PERCENTAGE_SYMBOL = '%';
 let PESO_SYMBOL = "UYU ";
+var resultadoCarrito = [];
+
+
+
+function eliminar(name) {
+    
+newArray= []; 
+
+for (let i = 0; i < resultadoCarrito.articles.length; i++) { 
+
+    if (resultadoCarrito.articles[i].name !== name ){
+        newArray.push(resultadoCarrito.articles[i])
+
+    }
+
+ }
+
+ resultadoCarrito.articles = newArray; 
+ mostrarCarrito(resultadoCarrito);
+
+}
 
 function mostrarCarrito(array) {
     htmlContentToAppend = "";
@@ -17,19 +38,21 @@ function mostrarCarrito(array) {
             <td>  <input type="number" class="form-control" id="prueba`+ [i + 1] + `" placeholder=" " required="" value="` + array.articles[i].count + `" min="0" onchange="update()" >    </td>
             <td>`+ parseInt(array.articles[i].unitCost) + ` ` + array.articles[i].currency + `</td>
             <td id="subtotal`+ [i + 1] + `">   </td>
+            <td> 
+            <button type="button" value="eliminar"  class="btn btn-link" onclick="eliminar('`+ array.articles[i].name +`')" > X Eliminar</button> </td>
     </tr>
       
     `
-        document.getElementById("mostrarProductos").innerHTML = htmlContentToAppend;
-
+       
     }
+    document.getElementById("mostrarProductos").innerHTML = htmlContentToAppend;
+    update();
 }
 
 function update() {
     var sub = 0;
 
     for (let i = 0; i < resultadoCarrito.articles.length; i++) {
-
         var a = 1;
 
         if (resultadoCarrito.articles[i].currency == "USD") {
@@ -47,7 +70,6 @@ function update() {
     }
 
     //Calcula lo que se ve abajo(subtotal, envio y total)
-
     let unitProductCostHTML = document.getElementById("productCostText");
     let comissionCostHTML = document.getElementById("comissionText");
     let totalCostTextHTML = document.getElementById("totalCostText");
@@ -61,6 +83,7 @@ function update() {
     totalCostTextHTML.innerHTML = totalCostTextToShow;
 
 }
+
 
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
@@ -82,6 +105,16 @@ document.addEventListener("DOMContentLoaded", function (e) {
         }
     });
 
+    getJSONData(CART_BUY_URL).then(function (resultCart) {
+        if (resultCart.status === "ok") {
+
+            mensajeCompra = resultCart.data;
+
+
+        }
+    });
+
+
     document.getElementById("goldradio").addEventListener("change", function () {
         shippingPercentage = 0.15;
         update();
@@ -102,4 +135,26 @@ document.addEventListener("DOMContentLoaded", function (e) {
     });
 
 
+});
+
+//Datos tarjeta de credito
+$(function ($) {
+    $('[data-numeric]').payment('restrictNumeric');
+    $('.cc-number').payment('formatCardNumber');
+    $('.cc-exp').payment('formatCardExpiry');
+    $('.cc-cvc').payment('formatCardCVC');
+    $.fn.toggleInputError = function (erred) {
+        this.parent('.form-group').toggleClass('has-error', erred);
+        return this;
+    };
+    $('form').submit(function (e) {
+        e.preventDefault();
+        var cardType = $.payment.cardType($('.cc-number').val());
+        $('.cc-number').toggleInputError(!$.payment.validateCardNumber($('.cc-number').val()));
+        $('.cc-exp').toggleInputError(!$.payment.validateCardExpiry($('.cc-exp').payment('cardExpiryVal')));
+        $('.cc-cvc').toggleInputError(!$.payment.validateCardCVC($('.cc-cvc').val(), cardType));
+        $('.cc-brand').text(cardType);
+        $('.validation').removeClass('text-danger text-success');
+        $('.validation').addClass($('.has-error').length ? 'text-danger' : 'text-success');
+    });
 });
