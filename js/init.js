@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function(e){
 });
 
 
-var loginUser= sessionStorage.getItem("botonUser");
+var loginUser= localStorage.getItem("botonUser");
 document.getElementById("datosUsuario").innerHTML = loginUser;
 
   
