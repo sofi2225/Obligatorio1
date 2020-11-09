@@ -27,6 +27,23 @@
         font-size: 3.5rem;
       }
     }
+    .grey {
+     border: grey;
+     border-radius:  5px;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      /* display: none; <- Crashes Chrome on hover */
+      -webkit-appearance: none;
+      margin: 0;
+      /* <-- Apparently some margin are still there even though it's hidden */
+    }
+
+    input[type=number] {
+      -moz-appearance: textfield;
+      /* Firefox */
+    }
   </style>
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
@@ -40,57 +57,150 @@
       <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
-   
-      
+
+
       <div class="dropdown">
-        <button id="datosUsuario" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        </button>      
-        <div  class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <button id="datosUsuario" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
           <a class="dropdown-item " href="cart.html">Mi Carrito</a>
           <a class="dropdown-item " href="my-profile.html">Mi Perfil</a>
           <a class="dropdown-item" onclick="cerrarSesion()" href="#">Cerrar Sesion</a>
-         
+
         </div>
       </div>
 
-      </div>
-      
+    </div>
+
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 7 (Fecha de entrega: 8/11/202020) -> Punto 1 y 2.</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
-    </div>
+
+
+  <div>
+
+
   </div>
-  <footer class="text-muted bg-light">
+
+  <div class="container">
+    <h2>Bienvenido </h2>
+
+
+
+
+
+
+
     <div class="container">
-      <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
-      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+      <div class="row grey">
+
+        <div class="col-sm">
+          <div id="mostrarFoto"></div>
+          <label> Pegue la url de la foto</label>
+          <input type="tetx" value="" id="valorFoto">
+          <button onclick="reemplazarFoto()"> Enviar</button>
+        </div>
+
+        <div class="col-sm">
+          <h5> Nombre:</h5>
+          <div id="nombreInfo"> </div>
+          <h5> Segundo Nombre:</h5>
+          <div id="sNombreInfo"> </div>
+          <h5>Segundo Apellido:</h5>
+          <div id="sApellidoInfo"> </div>
+          <h5> Email:</h5>
+          <div id="emailInfo"> </div>
+          <h5>Telefono:</h5>
+          <div id="telefonoInfo"> </div>
+        </div>
+
+
+       
+
+
+
+        
+      </div>
+
+
+      <br>
+
+
+
+
+      <h2>Modifica tus datos </h2>
+      <p>Modifica tus datos:</p>
+      <form onsubmit="return submitFormulario()">
+        <div class="form-group">
+          <label for="firstName">Name:</label>
+          <input type="text" class="form-control" id="firstName" value="" required>
+        </div>
+        <div class="form-group">
+          <label for="secondName">Second Name:</label>
+          <input type="text" class="form-control" id="secondName">
+        </div>
+        <div class="form-group">
+          <label for="fisrtLastName">First Last Name:</label>
+          <input class="form-control is-valid" type="text" placeholder="" class="form-control" id="firstLastName"
+            required>
+        </div>
+        <div class="form-group">
+          <label for="secondLastName">Second Last Name:</label>
+          <input type="text" class="form-control" id="secondLastName" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email :</label>
+          <input type="email" class="form-control" id="email" value="email" required>
+        </div>
+        <div class="form-group">
+          <label for="phoneNumber">Phone Number :</label>
+          <input type="number" class="form-control" id="phoneNumber" required>
+        </div>
+
+        <button class="btn btn-primary btn-lg" type="submit">Enviar Datos </button>
+
+      </form>
+
+
+
     </div>
-  </footer>
-  <div class="alert fade alert-success" role="alert" id="alertResult">
-    <span id="resultSpan"></span>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div id="spinner-wrapper">
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+
+
+
+
+
+
+    <footer class="text-muted bg-light">
+      <div class="container">
+        <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
+        <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+      </div>
+    </footer>
+    <div class="alert fade alert-success" role="alert" id="alertResult">
+      <span id="resultSpan"></span>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
-  </div>
-  <script src="js/jquery-3.4.1.min.js"></script>
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/dropzone.js"></script>
-  <script src="js/init.js"></script>
-  <script src="js/my-profile.js"></script>
+
+
+
+
+
+    <div id="spinner-wrapper">
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/dropzone.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/my-profile.js"></script>
 </body>
 
 </html>

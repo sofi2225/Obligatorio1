@@ -9,14 +9,11 @@ function eliminar(name) {
     
 newArray= []; 
 
-for (let i = 0; i < resultadoCarrito.articles.length; i++) { 
-
-    if (resultadoCarrito.articles[i].name !== name ){
-        newArray.push(resultadoCarrito.articles[i])
-
+resultadoCarrito.articles.forEach(article => {
+    if (article.name !== name ){
+        newArray.push(article)
     }
-
- }
+})
 
  resultadoCarrito.articles = newArray; 
  mostrarCarrito(resultadoCarrito);

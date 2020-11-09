@@ -14,10 +14,10 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
 
-  <meta name="google-signin-scope" content="profile email">
-  <meta name="google-signin-client_id"
-    content="928811355504-1s04rdvpfe7j99br1n6n216apdm3nl6r.apps.googleusercontent.com">
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <!-- <meta name="google-signin-scope" content="profile email"> -->
+  <!-- <meta name="google-signin-client_id"
+    content="928811355504-1s04rdvpfe7j99br1n6n216apdm3nl6r.apps.googleusercontent.com"> -->
+  <!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
 
   <style>
     html,
@@ -78,36 +78,77 @@
     }
 
     function validar() {
-
-      // OBtener valores 
       var email = document.getElementById("usuario").value;
       var contraseña = document.getElementById("clave").value;
-      localStorage.setItem("botonUser", email);
+      alert(email);
 
-      // Validacion
-      if (email === "") {
-        alert("Debes ingresar un usuario");
-        return false;
+      var estructura = localStorage.getItem("myProfile");
+
+
+      if (estructura == null) {
+
+        estructura = [];
+
+      }
+      sessionStorage.serItem("botonUser", email);
+
+
+      var bandera = false;
+      for (let i = 0; i < estructura.length; i++) {
+        if (estructura[i].email == email) {
+
+          bandera = true;
+          break;
+        }
       }
 
-      else if (contraseña === "") {
-        alert("Debes ingresar una contraseña");
-        return false;
-      }
+      if (!bandera) {
+        var user = {
 
-      else if (contraseña.length < 3) {
-        alert("La contraseña debe tener más de 3 caracteres")
-        return false;
-      }
+          firstName: "",
+          secondName: "",
+          fisrtLastName: "",
+          secondLastName: "",
+          email: document.getElementById("usuario").value,
+          phoneNumber: ""
 
-      else {
+        };
 
-        alert("Usuario creado con exito");
-        window.location.replace("index.html");
-        contL = 1;
-        localStorage.setItem("VariableContador", contL);
-        return false;
+        estructura.push(user);
+
+        localStorage.setItem("myProfile", JSON.stringify(estructura));
       }
+      var data = localStorage.getItem("myProfile");
+      alert(data.length);
+      // OBtener valores 
+
+      // sessionStorage.setItem("botonUser", email);
+
+
+      // // Validacion
+      // if (email === "") {
+      //   alert("Debes ingresar un usuario");
+      //   return false;
+      // }
+
+      // else if (contraseña === "") {
+      //   alert("Debes ingresar una contraseña");
+      //   return false;
+      // }
+
+      // else if (contraseña.length < 3) {
+      //   alert("La contraseña debe tener más de 3 caracteres")
+      //   return false;
+      // }
+
+      // else {
+
+      //   alert("Usuario creado con exito");
+      window.location.replace("index.html");
+      contL = 1;
+      sessionStorage.setItem("VariableContador", contL);
+      //return false;
+      // }
     }
   </script>
 
@@ -122,14 +163,14 @@
 
 
   <div class="container p-5">
-    <form name="formulario" class="form-signin" onsubmit="return validar()">
+    <form name="formulario" class="form-signin" onsubmit=" return validar()">
       <img class="mb-4" src="img/login.png" alt="Img login" height="167">
 
 
       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 
       <label for="inputEmail" class="sr-only">Email address</label>
-      <input name="usuario" type="email" id="usuario" class="form-control" placeholder="Email address" required
+      <input name="user" type="email" id="usuario" class="form-control" placeholder="Email address" required
         autofocus="">
 
       <label for="inputPassword" class="sr-only">Password</label>
@@ -148,9 +189,9 @@
     </form>
 
 
-    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <!-- <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div> -->
 
-    <script>
+    <!-- <script>
       function onSignIn(googleUser) {
         // Useful data for your client-side scripts:
         var profile = googleUser.getBasicProfile();
@@ -165,7 +206,7 @@
         var id_token = googleUser.getAuthResponse().id_token;
         console.log("ID Token: " + id_token);
       }
-    </script>
+    </script> -->
 
 
     <script src="js/init.js"></script>

@@ -45,25 +45,51 @@ function showProductsList() {
             ((maxCount == undefined) || (maxCount != undefined && parseInt(product.cost) <= maxCount)) &&
             ((textoBuscar == undefined) || (textoBuscar != undefined && product.name.toLowerCase().includes(textoBuscar.toLowerCase())))) {
 
-            htmlContentToAppend += `
-            <a href="product-info.html" class="list-group-item list-group-item-action">
-                <div class="row">
-                    <div class="col-3">
-                        <img src="` + product.imgSrc + `" alt="` + product.description + `" class="img-thumbnail">
-                       
-                    </div>
-                    <div class="col">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h4 class="mb-1">`+ product.name + `</h4>
-                            <small class="text-muted">` + product.soldCount + ` artículos</small>
-                        </div>
-                        <p class="mb-1">` + product.description + `</p>
-                         <div> ` + product.cost + `</div>
-                    </div>
-                </div>
-                
-            </a>
-            `
+
+            htmlContentToAppend += `<div class="col-sm"  width="30%">
+        
+                <a href="product-info.html" class="list-group-item list-group-item-action">
+                     <div class="row">
+                         <div class="">
+                             <img src="` + product.imgSrc + `" alt="` + product.description + `" class="img-thumbnail">
+                           
+                         </div>
+                         <div class="">
+                             <div class="">
+                                 <h4 class="">`+ product.name + `</h4>
+                                 <small class="text-muted">` + product.soldCount + ` artículos</small>
+                             </div>
+                             <p class="">` + product.description + `</p>
+                              <div> ` + product.cost + `</div>
+                         </div>
+                     </div>
+                    
+              </a>
+               </div>
+              `
+
+            // htmlContentToAppend += `
+
+            // <div class="">
+            // <a href="product-info.html" class="list-group-item list-group-item-action">
+            //     <div class="row">
+            //         <div class="">
+            //             <img src="` + product.imgSrc + `" alt="` + product.description + `" class="img-thumbnail">
+
+            //         </div>
+            //         <div class="">
+            //             <div class="">
+            //                 <h4 class="">`+ product.name + `</h4>
+            //                 <small class="text-muted">` + product.soldCount + ` artículos</small>
+            //             </div>
+            //             <p class="">` + product.description + `</p>
+            //              <div> ` + product.cost + `</div>
+            //         </div>
+            //     </div>
+
+            // </a>
+            // </div>
+            // `
         }
 
         document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
@@ -141,7 +167,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
     document.getElementById("searchForm").addEventListener("keyup", function () {
 
-        textoBuscar = document.getElementById("searchForm").value ;       
+        textoBuscar = document.getElementById("searchForm").value;
         showProductsList();
 
     });
