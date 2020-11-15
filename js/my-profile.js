@@ -3,7 +3,7 @@
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function (e) {
 
-
+   
     mostarDatos();
 
 
@@ -16,25 +16,36 @@ function reemplazarFoto() {
     alert(document.getElementById("valorFoto").value);
 
     reemplazo = `<a id="fotoPerfil" href="https://imgbb.com/"><img src=" ` + valorUrl + ` " alt="images-q-tbn-ANd9-Gc-Sd-Jzhx8ywr6z2-ILPFn-Md-UIFmp-Qzk6hoi-Rw-usqp-CAU" border="0" heigth="200px" width="200px"></a>`
-    document.getElementById("mostrarFoto").innerHTML = reemplazo;
+
+    localStorage.setItem("Foto", reemplazo);
+
+   
 
 
 }
 
 function mostarDatos() {
 
+
+
     var perfil = JSON.parse(localStorage.getItem("myProfile"));
 
 
     if (document.getElementById("email").value != null) {
+        
 
         document.getElementById("email").value = localStorage.getItem("botonUser");
-
-        var reemplazo = "";
-        reemplazo = `<a  id="fotoPerfil" href="https://imgbb.com/"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSd_Jzhx8ywr6z2ILPFnMdUIFmp-Qzk6hoiRw&usqp=CAU " alt="images-q-tbn-ANd9-Gc-Sd-Jzhx8ywr6z2-ILPFn-Md-UIFmp-Qzk6hoi-Rw-usqp-CAU" border="0" heigth="200px" width="200px"  ></a>`
-        document.getElementById("mostrarFoto").innerHTML = reemplazo;
+        
 
     }
+
+
+
+
+    document.getElementById("mostrarFoto").innerHTML = localStorage.getItem("Foto");
+
+    // foto = `<a  id="fotoPerfil" href="https://imgbb.com/"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSd_Jzhx8ywr6z2ILPFnMdUIFmp-Qzk6hoiRw&usqp=CAU " alt="images-q-tbn-ANd9-Gc-Sd-Jzhx8ywr6z2-ILPFn-Md-UIFmp-Qzk6hoi-Rw-usqp-CAU" border="0" heigth="200px" width="200px"  ></a>`
+    // document.getElementById("mostrarFoto").innerHTML = foto;
 
 
 
