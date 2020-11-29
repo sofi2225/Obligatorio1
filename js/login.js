@@ -14,7 +14,7 @@ function DataLogin() {
 
 function validar() {
 
-  // OBtener valores 
+  // Obtener valores 
   var email = document.getElementById("usuario").value;
   var contraseña = document.getElementById("clave").value;
   localStorage.setItem("botonUser", email);

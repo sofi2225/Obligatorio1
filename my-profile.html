@@ -78,42 +78,26 @@
     </div>
   </nav>
 
-
-  <div>
-
-
-  </div>
-
   <div class="container">
     <h2>Bienvenido </h2>
 
 
-
-
-
-
-
     <div class="container">
-      <div class="row grey">
-
-        <div class="col-sm">
-          <div id="mostrarFoto"></div>
-          <label> Pegue la url de la foto</label>
-          <input type="tetx" value="" id="valorFoto">
-          <button onclick="reemplazarFoto()"> Enviar</button>
-        </div>
-
-      
+      <div class="col-sm">
       </div>
 
+      <div class="form-group">
+        <div id="mostrarFoto"></div>
+        <label for="">Pegue Url de la foto:</label>
+        <input type="text" id="valorFoto" value="">
+        <button onclick="reemplazarFoto()"> Enviar</button>
+      </div>
 
       <br>
 
 
-
-
       <h2>Modifica tus datos </h2>
-      <p>Modifica tus datos:</p>
+
       <form onsubmit="return submitFormulario()">
         <div class="form-group">
           <label for="firstName">Name:</label>
@@ -125,7 +109,7 @@
         </div>
         <div class="form-group">
           <label for="fisrtLastName">First Last Name:</label>
-          <input class="form-control is-valid" type="text" placeholder="" class="form-control" id="firstLastName"
+          <input class="form-control " type="text" placeholder="" class="form-control" id="firstLastName"
             required>
         </div>
         <div class="form-group">
@@ -140,19 +124,11 @@
           <label for="phoneNumber">Phone Number :</label>
           <input type="number" class="form-control" id="phoneNumber" required>
         </div>
-
         <button class="btn btn-primary btn-lg" type="submit">Enviar Datos </button>
 
       </form>
 
-
-
     </div>
-
-
-
-
-
 
     <footer class="text-muted bg-light">
       <div class="container">
@@ -168,15 +144,9 @@
     </div>
 
 
-
-
-
     <div id="spinner-wrapper">
       <div class="lds-ring">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+    
       </div>
     </div>
     <script src="js/jquery-3.4.1.min.js"></script>

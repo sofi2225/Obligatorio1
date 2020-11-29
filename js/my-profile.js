@@ -8,24 +8,39 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
 
 });
+var reemplazo = "";
+
+if (localStorage.getItem("Foto") == null){ 
+
+imagen = `<img src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" alt="images-q-tbn-ANd9-Gc-Sd-Jzhx8ywr6z2-ILPFn-Md-UIFmp-Qzk6hoi-Rw-usqp-CAU" border="0" heigth="200px" width="200px">`
+localStorage.setItem("Foto", imagen);
+}
 
 function reemplazarFoto() {
-    var reemplazo = "";
+   
 
     var valorUrl = document.getElementById("valorFoto").value;
-    alert(document.getElementById("valorFoto").value);
 
     reemplazo = `<a id="fotoPerfil" href="https://imgbb.com/"><img src=" ` + valorUrl + ` " alt="images-q-tbn-ANd9-Gc-Sd-Jzhx8ywr6z2-ILPFn-Md-UIFmp-Qzk6hoi-Rw-usqp-CAU" border="0" heigth="200px" width="200px"></a>`
 
     localStorage.setItem("Foto", reemplazo);
+
+  
+
+    
+
+
 
    
 
 
 }
 
+
+
 function mostarDatos() {
 
+  
 
 
     var perfil = JSON.parse(localStorage.getItem("myProfile"));
@@ -38,8 +53,6 @@ function mostarDatos() {
         
 
     }
-
-
 
 
     document.getElementById("mostrarFoto").innerHTML = localStorage.getItem("Foto");
