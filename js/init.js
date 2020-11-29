@@ -11,7 +11,7 @@ const CART_BUY_URL = "https://japdevdep.github.io/ecommerce-api/cart/buy.json";
 
 
 
-// //Json cargados desde localhost:3000
+//Json cargados desde localhost:3000
 // const CATEGORIES_URL = "http://localhost:3000/categoriesJson";
 // const PUBLISH_PRODUCT_URL = "http://localhost:3000/messagePublishJson";
 // const CATEGORY_INFO_URL = "http://localhost:3000/categoryInfoJson";
