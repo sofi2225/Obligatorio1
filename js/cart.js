@@ -4,21 +4,18 @@ let PESO_SYMBOL = "UYU ";
 var resultadoCarrito = [];
 
 
-
 function eliminar(name) {
-    
-newArray= []; 
+    newArray = [];
 
-resultadoCarrito.articles.forEach(article => {
-    if (article.name !== name ){
-        newArray.push(article)
-    }
-})
+    resultadoCarrito.articles.forEach(article => {
+        if (article.name !== name) {
+            newArray.push(article)
+        }
+    })
 
- resultadoCarrito.articles = newArray; 
- mostrarCarrito(resultadoCarrito);
-
-}
+    resultadoCarrito.articles = newArray;
+    mostrarCarrito(resultadoCarrito);
+};
 
 function mostrarCarrito(array) {
     htmlContentToAppend = "";
@@ -27,24 +24,19 @@ function mostrarCarrito(array) {
 
 
         htmlContentToAppend += `
-   
+            <tr>
+                <td>  <img  src="`+ array.articles[i].src + `  " height="50" ></img>    </td>
+                <td>   ` + array.articles[i].name + `  </td>
+                <td>  <input type="number" class="form-control" id="prueba`+ [i + 1] + `" placeholder=" " required="" value="` + array.articles[i].count + `" min="0" onchange="update()" >    </td>
+                <td>`+ parseInt(array.articles[i].unitCost) + ` ` + array.articles[i].currency + `</td>
+                <td id="subtotal`+ [i + 1] + `">   </td>
+                <td> <button type="button" value="eliminar"  class="btn btn-link" onclick="eliminar('`+ array.articles[i].name + `')" > X Eliminar</button> </td>
+            </tr>`
 
-    <tr>
-            <td>  <img  src="`+ array.articles[i].src + `  " height="50" ></img>    </td>
-            <td>   ` + array.articles[i].name + `  </td>
-            <td>  <input type="number" class="form-control" id="prueba`+ [i + 1] + `" placeholder=" " required="" value="` + array.articles[i].count + `" min="0" onchange="update()" >    </td>
-            <td>`+ parseInt(array.articles[i].unitCost) + ` ` + array.articles[i].currency + `</td>
-            <td id="subtotal`+ [i + 1] + `">   </td>
-            <td> 
-            <button type="button" value="eliminar"  class="btn btn-link" onclick="eliminar('`+ array.articles[i].name +`')" > X Eliminar</button> </td>
-    </tr>
-      
-    `
-       
     }
     document.getElementById("mostrarProductos").innerHTML = htmlContentToAppend;
     update();
-}
+};
 
 function update() {
     var sub = 0;
@@ -81,12 +73,30 @@ function update() {
 
 }
 
+// function validarFormulario() {
+
+//     fetch('http://localhost:3000/RutaFormPost', {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify({
+
+//             "publicacion": document.getDocumentById("goldradio").value,
+//             "nombre": document.getDocumentById("envioNombre").value
+
+//         })
+
+//     }).then(res => res.json())
+//         .catch(error => console.error('Error:', error))
+//         .then(response => console.log('Success:', response));
+
+// }
 
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
-
 
 document.addEventListener("DOMContentLoaded", function (e) {
 
@@ -94,7 +104,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
         if (resultCart.status === "ok") {
 
             resultadoCarrito = resultCart.data;
-
 
             mostrarCarrito(resultadoCarrito);
 
@@ -111,14 +120,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
         }
     });
 
-
     document.getElementById("goldradio").addEventListener("change", function () {
         shippingPercentage = 0.15;
         update();
         console.log(shippingPercentage)
     });
-
-
 
     document.getElementById("premiumradio").addEventListener("change", function () {
         shippingPercentage = 0.07;
@@ -133,6 +139,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
 
 });
+
 
 //Datos tarjeta de credito
 $(function ($) {
